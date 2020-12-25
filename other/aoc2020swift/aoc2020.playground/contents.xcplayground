@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' buildActiveScheme='true'>
+    <pages>
+        <page name='day1'/>
+        <page name='day2'/>
+        <page name='day3'/>
+        <page name='day4'/>
+        <page name='day5'/>
+        <page name='day6'/>
+        <page name='day7'/>
+        <page name='day8'/>
+        <page name='day9'/>
+        <page name='day10'/>
+        <page name='day11'/>
+        <page name='day12'/>
+        <page name='day13'/>
+        <page name='day15'/>
+        <page name='Untitled Page'/>
+    </pages>
+</playground>
