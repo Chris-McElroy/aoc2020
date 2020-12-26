@@ -1,6 +1,4 @@
-# aoc2020
-my solutions for advent of code 2020
-
+# advent of code 2020
 first 50* year!
 
 built in swift 5 using xcode 12.3
