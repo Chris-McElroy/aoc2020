@@ -8,55 +8,80 @@
 import Foundation
 
 func day23() {
-    let start = Date().timeIntervalSinceReferenceDate
-    let l1 = [2,1,5,6,9,4,7,8,3]
-    var list: [Int] = Array(repeating: 0, count: 1000001)
+    let l = [2,1,5,6,9,4,7,8,3]
     
-    for i in 0..<(l1.count-1) {
-        list[l1[i]] = l1[i+1]
+    var l1 = Array(repeating: 0, count: 10)
+    for i in 0..<(l.count-1) {
+        l1[l[i]] = l[i+1]
     }
+    l1[l.last!] = l[0]
     
-    list[l1.last!] = 10
-    for i in 10..<1000000 {
-        list[i] = i+1
-    }
-    list[1000000] = 2
-    
-    var current = l1[0]
-    var i = 0
-    while i != 10000000 {
-        let t1 = list[current]
-        let t2 = list[t1]
-        let t3 = list[t2]
-        let next = list[t3]
+    var current = l[0]
+    var i1 = 0
+    while i1 != 100 {
+        let t1 = l1[current]
+        let t2 = l1[t1]
+        let t3 = l1[t2]
+        let next = l1[t3]
         
-        list[current] = next
+        l1[current] = next
+        
+        repeat {
+            current -= 1
+            if current < 1 { current = 9 }
+        } while current.isin(t1,t2,t3)
+        
+        let newEnd = l1[current]
+        l1[current] = t1
+        l1[t3] = newEnd
+        
+        current = next
+        
+        i1 += 1
+    }
+    
+    var a1 = ""
+    var j1 = l1[1]
+    while j1 != 1 {
+        a1.append(String(j1))
+        j1 = l1[j1]
+    }
+    
+    var l2: [Int] = Array(repeating: 0, count: 1000001)
+    
+    for i in 0..<(l.count-1) {
+        l2[l[i]] = l[i+1]
+    }
+    
+    l2[l.last!] = 10
+    for i in 10..<1000000 {
+        l2[i] = i+1
+    }
+    l2[1000000] = l[0]
+    
+    current = l[0]
+    var i2 = 0
+    while i2 != 10000000 {
+        let t1 = l2[current]
+        let t2 = l2[t1]
+        let t3 = l2[t2]
+        let next = l2[t3]
+        
+        l2[current] = next
         
         repeat {
             current -= 1
             if current < 1 { current = 1000000 }
         } while current.isin(t1,t2,t3)
         
-        let newEnd = list[current]
-        list[current] = t1
-        list[t3] = newEnd
+        let newEnd = l2[current]
+        l2[current] = t1
+        l2[t3] = newEnd
         
         current = next
         
-        i += 1
-        
-//        print(list, current, travel)
+        i2 += 1
     }
     
-    print(list[1], list[list[1]])
-    print("time: ", Date().timeIntervalSinceReferenceDate-start)
-}// 9, 2, 7, 5, 4, 3 8, 6, 1
-//92754386
-
-// 4, 2, 1, 8, 6, 7, 5, 9, 3
-// 86759342
-
-// 46978532
-
-
-// Optional(250343) Optional(651247) 250343*651247 163035127721
+    print("23:", a1, l2[1]*l2[l2[1]])
+}

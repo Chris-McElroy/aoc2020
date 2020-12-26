@@ -19,7 +19,7 @@ func day15() {
         i += 1
     }
     
-    let ans1 = next
+    let a1 = next
     
     while i != (30000000-1) {
         let tmp = next
@@ -28,5 +28,5 @@ func day15() {
         i += 1
     }
     
-    print("15:", ans1, next)
+    print("15:", a1, next)
 }

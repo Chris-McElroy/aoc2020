@@ -38,11 +38,12 @@ func day24() {
             }
             lastC = c
         }
-//        print(line, ur, ea)
         if (abs(ur) > max) { max = abs(ur) }
         if (abs(ea) > max) { max = abs(ea) }
         flipd[ur*1000+ea, default: false].toggle()
     }
+    
+    let a1 = flipd.reduce(0) { n,t in n+t.value.int }
     
     max += 2
     var newFlpd: [Int: Bool] = [:]
@@ -66,24 +67,14 @@ func day24() {
         flipd = newFlpd
         newFlpd = [:]
         max += 1
-        var co = 0
-        for i in flipd {
-            if i.value {
-                co += 1
-            }
-        }
-        
-        print(co)
     }
     
-    var co = 0
+    var a2 = 0
     for i in flipd {
-        if i.value {
-            co += 1
-        }
+        a2 += i.value.int
     }
     
-    print(co)
+    print("24:", a1, a2)
 }
 
 // guesses

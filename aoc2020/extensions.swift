@@ -286,6 +286,13 @@ public extension Bool {
     var int: Int { self ? 1 : 0 }
 }
 
+func timed(_ run: () -> Void) {
+    let start = Date().timeIntervalSinceReferenceDate
+    run()
+    let end = Date().timeIntervalSinceReferenceDate
+    print("in:", end-start)
+}
+
 public extension BinaryFloatingPoint {
     var isWhole: Bool { self.truncatingRemainder(dividingBy: 1) == 0 }
     var isEven: Bool { Int(self) % 2 == 0 }

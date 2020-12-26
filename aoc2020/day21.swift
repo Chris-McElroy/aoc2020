@@ -29,10 +29,10 @@ func day21() {
         allIng.append(contentsOf: ing)
     }
     
-    var c = 0
+    var a1 = 0
     
     for i in allIng {
-        if !maybe.values.joined().contains(i) { c += 1 }
+        if !maybe.values.joined().contains(i) { a1 += 1 }
     }
     
     var oldCount = -1
@@ -53,11 +53,11 @@ func day21() {
         }
     }
     
-    var s = ""
+    var a2 = ""
     for v in decided.sorted(by: { x,y in x.key < y.key}) {
-        s += v.value + ","
+        a2 += v.value + ","
     }
+    a2.removeLast()
     
-    print(s)
-    print(allIng.count, c)
+    print("21:", a1, a2)
 }

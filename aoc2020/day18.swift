@@ -11,7 +11,6 @@ func day18() {
     func fixString(_ s: String) -> String {
         var newA: [String] = []
         var i = 0
-//        print(s)
         if s.count == 5 { return s }
         while i < s.count {
             let c = s[i]
@@ -35,22 +34,32 @@ func day18() {
             }
             i += 1
         }
-//        print(newA)
         return newA.joined()
     }
     
-    let list = sd(18)
+    func sliceFrom(_ i: Int, on s: String) -> String {
+        var newS = ""
+        var count = 1
+
+        for c in s.dropFirst(i+1) {
+            if c == ")" {
+                count -= 1
+                if count == 0 {
+                    break
+                }
+            } else if c == "(" {
+                count += 1
+            }
+            newS.append(c)
+        }
+        return newS
+    }
     
-    var total = 0
-    var stack: [(Bool, Int)] = []
-    
-    for line in list {
+    func getAns(for string: String) -> Int {
         var current = 0
         var mult = false
-        let newLine = fixString(line)
-//        print(line)
-//        print(newLine)
-        for c in newLine {
+        var stack: [(Bool, Int)] = []
+        for c in string {
             if c == " " {
                 
             } else if c == "(" {
@@ -68,14 +77,24 @@ func day18() {
                 else { current += old.1 }
             }
         }
-        if !stack.isEmpty { print("error") }
-        total += current
+        return current
     }
     
-    print("18:", "part 1 missing", total)
+    let list = sd(18)
     
+    var a1 = 0
+    var a2 = 0
+    
+    for line1 in list {
+        let line2 = fixString(line1)
+        
+        a1 += getAns(for: line1)
+        a2 += getAns(for: line2)
+    }
+    
+    print("18:", a1, a2)
+}
    
-    
 //    func evaluate(_ s: String) -> Int {
 //        var current = 0
 //        var add = true
@@ -116,23 +135,6 @@ func day18() {
 //        return current
 //    }
 //
-    func sliceFrom(_ i: Int, on s: String) -> String {
-        var newS = ""
-        var count = 1
 
-        for c in s.dropFirst(i+1) {
-            if c == ")" {
-                count -= 1
-                if count == 0 {
-                    break
-                }
-            } else if c == "(" {
-                count += 1
-            }
-            newS.append(c)
-        }
-        return newS
-    }
-}
 
 

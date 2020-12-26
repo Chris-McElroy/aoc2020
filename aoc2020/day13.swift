@@ -10,24 +10,20 @@ import Foundation
 func day13() {
     let list = sd(13)
 
-//    var t = Int(list[0])!
-
+    let t = Int(list[0])!
 
     var bus: [(Int, Int)] = list[1].split(separator: ",").enumerated().filter({ i,e in e != "x" }).map { i,e in (i, Int(e)!) }
 
-//    var fastest: Int = .max
+    var fastest: Int = .max
 
-//    var ans = 0
-    //
-    //for b in bus {
-    //    if b - (t % b) < fastest {
-    //        fastest = b - (t % b)
-    //        ans = fastest*b
-    //    }
-    //    print(b, fastest)
-    //}
-
-//    print(bus)
+    var a1 = 0
+    
+    for (_,b) in bus {
+        if b - (t % b) < fastest {
+            fastest = b - (t % b)
+            a1 = fastest*b
+        }
+    }
 
     var i = 1
 
@@ -36,6 +32,7 @@ func day13() {
     var diff = 0
     bus = bus.sansFirst(1)
     var next = bus.popLast()!
+    var a2 = 0
 
     while true {
         let t = (jump*i + base + next.0 - diff)
@@ -45,7 +42,7 @@ func day13() {
             diff = next.0
             i = 1
             if bus.count == 0 {
-                print("13:", "part 1 missing", t-next.0)
+                a2 = t-next.0
                 break
             }
             next = bus.popLast()!
@@ -53,8 +50,5 @@ func day13() {
         i += 1
     }
 
-
-    //print(1008141%19)
-    //print(ans, fastest)
-
+    print("13:", a1, a2)
 }
