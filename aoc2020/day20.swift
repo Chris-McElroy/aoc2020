@@ -86,8 +86,8 @@ func day20() {
                 if b.value.contains(next) || b.value.contains(String(next.reversed())) {
                     var new = tiles[b.key]!
                     let newLine = fit.count % 12 == 0
-                    lop: for _ in 0..<2 {
-                        for _ in 0..<4 {
+                    lop: for _ in stride(from: 0, to: 2, by: 1) {
+                        for _ in stride(from: 0, to: 4, by: 1) {
                             if new[0] == next {
                                 if newLine {
                                     pic.append(contentsOf: trim(new))
@@ -133,13 +133,13 @@ func day20() {
                    " #  #  #  #  #  #   "]
     let hashNum = monster.reduce(0) { n,s in n + s.repeats(of: "#") }
 
-    for _ in 0..<2 {
-        for _ in 0..<4 {
-            for y in 0..<(pic.count-2) {
-                for x in 0..<(pic[0].count-19) {
+    for _ in stride(from: 0, to: 2, by: 1) {
+        for _ in stride(from: 0, to: 4, by: 1) {
+            for y in stride(from: 0, to: pic.count-2, by: 1) {
+                for x in stride(from: 0, to: pic[0].count-19, by: 1) {
                     var there = true
-                    li: for dy in 0..<3 {
-                        for dx in 0..<20 {
+                    li: for dy in stride(from: 0, to: 3, by: 1) {
+                        for dx in stride(from: 0, to: 20, by: 1) {
                             if monster[dy][dx] == "#" {
                                 if pic[y+dy][x+dx] != "#" {
                                     there = false
@@ -159,69 +159,6 @@ func day20() {
     }
     
     print("20:", a1, a2)
-}
-
-func day20b() {
-    func rotate(_ tile: [String], _ n: Int) -> [String] {
-        if n == 0 { return tile }
-        else if n == 2 { return tile.reversed().map({ String($0.reversed()) }) }
-        else {
-            var newT: [String] = Array(tile.last!).map { String($0) }
-            for i in 2...(tile.count) {
-                for j in 0..<newT.count {
-                    newT[j].append(tile[tile.count-i][j])
-                }
-            }
-            if n == 3 { return newT.reversed().map({ String($0.reversed()) }) }
-            return newT
-        }
-    }
-    var pic = sd(20)
-    let monster = ["                  # ","#    ##    ##    ###"," #  #  #  #  #  #   "]
-
-    for l in pic {
-        print(l)
-    }
-    for l in monster {
-        print(l, l.count)
-    }
-    var mon = 0
-    for _ in 0..<2 {
-        for _ in 0..<4 {
-            for y in 0..<(pic.count-2) {
-                for x in 0..<(pic[0].count-19) {
-                    var there = true
-                    li: for dy in 0..<3 {
-                        for dx in 0..<20 {
-                            if monster[dy][dx] == "#" {
-                                if pic[y+dy][x+dx] != "#" {
-                                    there = false
-                                    break li
-                                }
-                            }
-                        }
-                    }
-                    if there {
-                        mon += 1
-                    }
-                }
-            }
-            pic = rotate(pic, 1)
-        }
-        pic = Array(pic.reversed())
-    }
-            
-    print(mon)
-    
-    var co = 0
-    for lin in pic {
-        for c in lin {
-            if c == "#" {
-                co += 1
-            }
-        }
-    }
-    print(co)
 }
 
 //.............#...#...#...#......#.#...............#...#........#...#....#....###..#.##...#.#....

@@ -17,8 +17,8 @@ func day23() {
     l1[l.last!] = l[0]
     
     var current = l[0]
-    var i1 = 0
-    while i1 != 100 {
+    
+    for _ in stride(from: 0, to: 100, by: 1) {
         let t1 = l1[current]
         let t2 = l1[t1]
         let t3 = l1[t2]
@@ -36,8 +36,6 @@ func day23() {
         l1[t3] = newEnd
         
         current = next
-        
-        i1 += 1
     }
     
     var a1 = ""
@@ -60,8 +58,7 @@ func day23() {
     l2[1000000] = l[0]
     
     current = l[0]
-    var i2 = 0
-    while i2 != 10000000 {
+    for _ in stride(from: 0, to: 10000000, by: 1) {
         let t1 = l2[current]
         let t2 = l2[t1]
         let t3 = l2[t2]
@@ -79,8 +76,6 @@ func day23() {
         l2[t3] = newEnd
         
         current = next
-        
-        i2 += 1
     }
     
     print("23:", a1, l2[1]*l2[l2[1]])

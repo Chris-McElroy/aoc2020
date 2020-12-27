@@ -27,10 +27,10 @@ func day17() {
     }
     
     for _ in 0..<6 {
-        for w in bounds[0].0...bounds[0].1 {
-            for z in bounds[0].0...bounds[0].1 {
-                for y in bounds[1].0...bounds[1].1 {
-                    for x in bounds[1].0...bounds[1].1 {
+        for w in stride(from: bounds[0].0, through: bounds[0].1, by: 1) {
+            for z in stride(from: bounds[0].0, through: bounds[0].1, by: 1) {
+                for y in stride(from: bounds[1].0, through: bounds[1].1, by: 1) {
+                    for x in stride(from: bounds[1].0, through: bounds[1].1, by: 1) {
                         var num1 = 0
                         var num2 = 0
                         var dw = -1
@@ -76,9 +76,9 @@ func day17() {
     
     var n1 = 0
     var n2 = 0
-    for w in bounds[0].0...bounds[0].1 {
-        for z in bounds[0].0...bounds[0].1 {
-            for y in bounds[1].0...bounds[1].1 {
+    for w in stride(from: bounds[0].0, through: bounds[0].1, by: 1) {
+        for z in stride(from: bounds[0].0, through: bounds[0].1, by: 1) {
+            for y in stride(from: bounds[1].0, through: bounds[1].1, by: 1) {
                 while space2[w][z][y] != 0 {
                     n2 += converter[space2[w][z][y]&7]
                     space2[w][z][y] = space2[w][z][y] &>> 3

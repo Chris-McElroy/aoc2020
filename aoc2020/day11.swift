@@ -54,10 +54,8 @@ func day11() {
         var newList1 = list1
         var newList2 = list2
         changes = 0
-        var i = 0
-        while i != len1 {
-            var j = 0
-            while j != len2 {
+        for i in stride(from: 0, to: len1, by: 1) {
+            for j in stride(from: 0, to: len2, by: 1) {
                 let s1 = list1[i][j]
                 let s2 = list2[i][j]
                 var full1 = 0
@@ -78,9 +76,7 @@ func day11() {
                         changes += 1
                     }
                 }
-                j += 1
             }
-            i += 1
         }
         list1 = newList1
         list2 = newList2
@@ -88,8 +84,8 @@ func day11() {
 
     var seats1 = 0
     var seats2 = 0
-    for i in 0..<len1 {
-        for j in 0..<len2 {
+    for i in stride(from: 0, to: len1, by: 1) {
+        for j in stride(from: 0, to: len2, by: 1) {
             seats1 += (list1[i][j] == 1).int
             seats2 += (list2[i][j] == 1).int
         }

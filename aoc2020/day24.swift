@@ -8,7 +8,7 @@
 import Foundation
 
 func day24() {
-    var list = sd(24)
+    let list = sd(24)
     var flipd: [Int: Bool] = [:]
     var max = 10
     
@@ -49,9 +49,9 @@ func day24() {
     var newFlpd: [Int: Bool] = [:]
     
     let n = [(0,1),(0,-1),(1,-1),(-1,1),(1,0),(-1,0)]
-    for _ in 0..<100 {
-        for r in -max...max {
-            for u in -max...max {
+    for _ in stride(from: 0, to: 100, by: 1) {
+        for r in stride(from: -max, through: max, by: 1) {
+            for u in stride(from: -max, through: max, by: 1) {
                 let v = flipd[u*1000+r, default: false]
                 var con = 0
                 for nc in n {
