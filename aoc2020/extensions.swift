@@ -305,7 +305,7 @@ public extension BinaryInteger {
     var isOdd: Bool { self % 2 == 1 }
 }
 
-let currentDirectoryURL = URL(fileURLWithPath: "build/code/aoc2020/aoc2020/input", relativeTo: FileManager.default.homeDirectoryForCurrentUser)
+let currentDirectoryURL = URL(fileURLWithPath: "/Users/4/Library/Mobile Documents/com~apple~CloudDocs/files/code/aoc2020/aoc2020/input/")
 
 public func id(_ num: Int) -> Array<Int> {
     do {
